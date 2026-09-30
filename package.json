@@ -1,0 +1,56 @@
+{
+  "name": "@openadam/exact-intervals",
+  "version": "0.1.0",
+  "description": "Deterministic half-open interval set algebra on exact integer endpoints, with optional source attribution.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "openAdam",
+    "url": "https://github.com/tetracoralla"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tetracoralla/exact-intervals.git"
+  },
+  "homepage": "https://github.com/tetracoralla/exact-intervals#readme",
+  "bugs": "https://github.com/tetracoralla/exact-intervals/issues",
+  "keywords": [
+    "interval",
+    "intervals",
+    "set-algebra",
+    "half-open",
+    "bigint",
+    "exact",
+    "nanosecond",
+    "availability",
+    "scheduling",
+    "deterministic"
+  ],
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "check": "npm run typecheck && npm test && npm run build",
+    "test": "vitest run --no-file-parallelism",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11"
+  }
+}
