@@ -43,10 +43,33 @@ union test.
 
 ## Install
 
-The package is Apache-2.0 with zero runtime dependencies and works from a
-packed install (`npm pack`) without any sibling checkout. Unpublished
-candidates are consumed by pinned tarball with a recorded digest, for example
-`"file:vendor/openadam-exact-intervals-0.1.0.tgz"`.
+Install the versioned [GitHub release artifact](https://github.com/tetracoralla/exact-intervals/releases/tag/v0.1.1) directly:
+
+```sh
+npm install https://github.com/tetracoralla/exact-intervals/releases/download/v0.1.1/openadam-exact-intervals-0.1.1.tgz
+```
+
+Once this version is available on npm, registry installation is:
+
+```sh
+npm install @openadam/exact-intervals@0.1.1
+```
+
+```js
+import { subtractIntervals } from "@openadam/exact-intervals";
+
+// Coordinates remain exact even above Number.MAX_SAFE_INTEGER.
+const start = 9007199254740993n;
+const available = [{ start, end: start + 10n }];
+const occupied = [{ start: start + 3n, end: start + 6n }];
+const result = subtractIntervals(available, occupied);
+// [{ start, end: start + 3n }, { start: start + 6n, end: start + 10n }]
+```
+
+Apache-2.0, ESM, Node >= 20.19.0, zero runtime dependencies. CI exercises
+Linux, macOS and Windows. A packed install works without this source checkout.
+Use exact registry versions with a lockfile; offline builds can vendor the same
+published tarball and record its digest. See [RELEASING.md](RELEASING.md).
 
 ## Non-goals
 
@@ -57,7 +80,7 @@ only computes exact interval sets.
 ## Development
 
 ```sh
-npm install
+npm ci --ignore-scripts
 npm run check   # typecheck + tests + build
 ```
 
